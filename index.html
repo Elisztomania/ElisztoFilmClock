@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minuteur de développement argentique</title>
+<meta name="description" content="Minuteur en trois étapes (développement, stop, fixateur) pour le développement argentique, avec un bip toutes les 30 secondes.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Minuteur de développement argentique</h1>
+
+  <div role="tablist" aria-label="Étapes du développement">
+    <button type="button" role="tab" id="tab-0" aria-controls="panel"></button>
+    <button type="button" role="tab" id="tab-1" aria-controls="panel"></button>
+    <button type="button" role="tab" id="tab-2" aria-controls="panel"></button>
+  </div>
+
+  <section id="panel" role="tabpanel" tabindex="-1">
+    <div class="dial" id="dial">
+      <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <circle class="face" cx="100" cy="100" r="98"></circle>
+        <circle class="ring-bg" cx="100" cy="100" r="92"></circle>
+        <circle class="ring" id="ring" cx="100" cy="100" r="92"></circle>
+        <g id="ticks"></g>
+        <g id="nums"></g>
+        <line class="hand" id="hand" x1="100" y1="30" x2="100" y2="9"></line>
+      </svg>
+      <div class="dial-center">
+        <div class="time" id="time" role="timer" aria-live="off" aria-atomic="true">07:00</div>
+        <div class="dial-label" id="label"></div>
+      </div>
+    </div>
+
+    <p class="status" id="status"></p>
+
+    <fieldset id="duration">
+      <legend>Durée de l’étape</legend>
+      <div class="duration">
+        <label for="min">Minutes
+          <input type="number" id="min" min="0" max="99" inputmode="numeric">
+        </label>
+        <label for="sec">Secondes
+          <input type="number" id="sec" min="0" max="59" inputmode="numeric">
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="controls">
+      <button type="button" class="action primary" id="startBtn">Démarrer</button>
+      <button type="button" class="action" id="resetBtn">Réinitialiser</button>
+      <button type="button" class="action" id="nextBtn">Étape suivante</button>
+    </div>
+
+    <div class="options">
+      <label><input type="checkbox" id="optBeep" checked> Bip toutes les 30 secondes</label>
+      <label><input type="checkbox" id="optAuto"> Lancer automatiquement l’étape suivante</label>
+      <label><input type="checkbox" id="optWake" checked> Garder l’écran allumé</label>
+    </div>
+  </section>
+
+  <div class="sr-only" id="live" aria-live="polite" aria-atomic="true"></div>
+</main>
+
+<script src="script.js" defer></script>
+</body>
+</html>
