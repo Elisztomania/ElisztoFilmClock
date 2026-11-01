@@ -82,12 +82,12 @@
     const o = ac.createOscillator(), g = ac.createGain();
     o.type = 'sine'; o.frequency.value = freq;
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(0.4, t0 + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.8, t0 + 0.01);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + len);
     o.connect(g); g.connect(ac.destination);
     o.start(t0); o.stop(t0 + len + 0.05);
   }
-  function beep() { const a = audio(); if (a) tone(880, a.currentTime, 0.18); }
+  function beep() { const a = audio(); if (a) tone(880, a.currentTime, 0.3); }
   function endBeep() {
     const a = audio(); if (!a) return;
     const t = a.currentTime;
